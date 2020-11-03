@@ -10,7 +10,7 @@ import Foundation
 
 protocol ModelDelegate {
     
-    func videoFetched(_ video:[Video])
+    func videoFetched(_ videos:[Video])
 }
 
 class Model {
@@ -45,8 +45,10 @@ class Model {
                 
                 let response = try decoder.decode(Response.self, from: data!)
                 
+                
                 if response.items != nil {
                     DispatchQueue.main.async {
+                        // Call the "videoFetch" method of the delegate
                         self.delegate?.videoFetched(response.items!)
                     }
                 }
